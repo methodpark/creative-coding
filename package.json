@@ -1,0 +1,21 @@
+{
+  "name": "swec18-creative-coding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "drawingNode.js",
+  "directories": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "creative codeing",
+    "launchpad",
+    "midi",
+    "dmx"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lunchpad": "^2.0.1"
+  }
+}
