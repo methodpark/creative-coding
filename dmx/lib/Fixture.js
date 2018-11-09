@@ -1,3 +1,5 @@
+const Color = require('Color');
+
 const hexToRgb = require('./hexToRgb');
 
 class Fixture {
@@ -11,8 +13,8 @@ class Fixture {
     this._b = 0;
   }
 
-  color(hex) {
-    const rgb = hexToRgb(hex);
+  color(color) {
+    const rgb = this._getColor(color);;
     this._r = rgb.r;
     this._g = rgb.g;
     this._b = rgb.b;
@@ -25,7 +27,7 @@ class Fixture {
   }
 
   generate(brightness, hex) {
-    const rgb = hexToRgb(hex);
+    const rgb = this._getColor(hex);
     return this._getConfig(brightness, rgb.r, rgb.g, rgb.b);
   }
 
@@ -41,6 +43,14 @@ class Fixture {
   _update() {
     const code = this._getConfig(this._brightness, this._r, this._g, this._b);
     this._universe.update(code);
+  }
+
+  _getColor(color) {
+    if (color.object) {
+      return color.object();
+    }
+
+    return hexToRgb(color)
   }
 }
 

@@ -16,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "color": "^3.1.0",
     "dmx": "github:seriousManual/node-dmx",
     "lunchpad": "^2.0.1"
   }
