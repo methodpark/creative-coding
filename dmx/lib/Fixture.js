@@ -1,7 +1,5 @@
 const Color = require('Color');
 
-const hexToRgb = require('./hexToRgb');
-
 class Fixture {
   constructor(basePort, universe) {
     this._basePort = basePort;
@@ -14,34 +12,42 @@ class Fixture {
   }
 
   color(color) {
-    const rgb = this._getColor(color);;
+    const rgb = this._getColor(color);
     this._r = rgb.r;
     this._g = rgb.g;
     this._b = rgb.b;
     this._update();
+
+    return this;
   }
 
   brightness(brightness) {
     this._brightness = brightness;
     this._update();
+
+    return this;
   }
 
   generate(brightness, hex) {
-    const rgb = this._getColor(hex);
-    return this._getConfig(brightness, rgb.r, rgb.g, rgb.b);
+    return this._getConfig(brightness, hex ? this._getColor(hex) : null);
   }
 
-  _getConfig(brightness, r, g, b) {
-    return {
-      [this._basePort]: brightness * 255,
-      [this._basePort + 1]: r,
-      [this._basePort + 2]: g,
-      [this._basePort + 3]: b,
+  _getConfig(brightness, rgb) {
+    const result = {
+      [this._basePort]: brightness * 255
+    };
+
+    if (rgb) {
+      result[this._basePort + 1] = rgb.r;
+      result[this._basePort + 2] = rgb.g;
+      result[this._basePort + 3] = rgb.b;
     }
+    
+    return result;
   }
 
   _update() {
-    const code = this._getConfig(this._brightness, this._r, this._g, this._b);
+    const code = this._getConfig(this._brightness, {r: this._r, g: this._g, b: this._b});
     this._universe.update(code);
   }
 
@@ -50,7 +56,7 @@ class Fixture {
       return color.object();
     }
 
-    return hexToRgb(color)
+    return new Color(color).object();
   }
 }
 

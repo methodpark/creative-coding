@@ -1,13 +1,23 @@
-var DMX = require('dmx');
+const DMX = require('dmx');
 
-var dmx = new DMX();
+const getPort = require('./getPort');
 
-function getUniverse(port, dmxInterface='enttec-usb-dmx-pro') {
+const dmx = new DMX();
+
+async function getUniverse() {
+  let port = null;
+  try {
+    port = await getPort();
+  } catch (error) {
+    console.error('could not determine port, falling back to debug');
+    port = 'debug';
+  }
+
   if (port === 'debug') {
     return dmx.addUniverse('demo', null);
   }
 
-  dmx.addUniverse('demo', dmxInterface, port);
+  return dmx.addUniverse('demo', 'enttec-usb-dmx-pro', port);
 }
 
 module.exports = getUniverse;
