@@ -3,7 +3,6 @@ const serialport = require('serialport');
 function getInterfacePort() {
   return new Promise((resolve, reject) => {
     serialport.list((error, ports) => {
-      console.log(ports, error)
       if (error) {
         return reject(error);
       }
