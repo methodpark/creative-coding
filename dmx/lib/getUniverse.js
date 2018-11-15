@@ -2,9 +2,9 @@ const DMX = require('dmx');
 
 const getPort = require('./getPort');
 
-const dmx = new DMX();
-
 async function getUniverse() {
+  const dmx = new DMX();
+  
   let port = null;
   try {
     port = await getPort();
