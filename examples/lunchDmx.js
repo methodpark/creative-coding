@@ -10,7 +10,7 @@ const getUniverse = require('../lib/getUniverse');
 
 Promise.all([
   lunchpad.initialize(),
-  getUniverse()
+  getUniverse('usbPro')
 ]).then(([launchpad, universe]) => initialize(launchpad, universe));
 
 

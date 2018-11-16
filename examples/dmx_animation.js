@@ -3,7 +3,7 @@ const DMX = require('dmx');
 const Fixture = require('../lib/Fixture');
 const getUniverse = require('../lib/getUniverse');
 
-getUniverse('debug').then(universe => {
+getUniverse('usbPro').then(universe => {
   const fixture = new Fixture(1, universe);
 
   fixture.brightness(0);
