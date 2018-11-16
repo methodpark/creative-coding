@@ -30,8 +30,6 @@ npm install
 
 ## Launchpad
 
-Zum Interfacing wird das Modul `Lunchpad` eingesetzt.
-
 ### Initialisierung
 ````javascript
 const lunchpad = require('lunchpad');
@@ -76,11 +74,7 @@ const lighterRed = myRed.lighter();
 
 # DMX
 
-Über das `dmx` Modul wird mit dem DMX Universum interagiert.
-
 ````javascript
-const DMX = require('dmx');
-
 const Fixture = require('./lib/Fixture');
 const getUniverse = require('./lib/getUniverse');
 
