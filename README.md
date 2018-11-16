@@ -1,6 +1,6 @@
 # SWEC18 Creative Coding Session
 
-## Beispielrepo
+## Beispiel Repoistory
 
 Im folgenden Beispiel Repository finden sich zu jedem Gerät ausführliche Codebeispiele, die als Referenz (und natürlich zum herum spielen) heran gezogen werden können.
 https://github.com/methodpark/swec18-creative-coding
@@ -54,13 +54,13 @@ lunchpad.initialize().then(launchpad => {
 
 ### Events
 
-`launchpad.on('input', (x, y) => ...)`
+`launchpad.on('input', (x, y) => ...)`<br>
 Button Event mit den Koordinaten des Buttons
 
-`launchpad.on('functionX', x => ...)`
+`launchpad.on('functionX', x => ...)`<br>
 Button Event für die horizontalen Funktions Buttons
 
-`launchpad.on('functionY', y => ...)`
+`launchpad.on('functionY', y => ...)`<br>
 Button Event für die vertikalen Funktions Buttons
 
 ### Farben
@@ -76,3 +76,36 @@ const lighterRed = myRed.lighter();
 
 # DMX
 
+Über das `dmx` Modul wird mit dem DMX Universum interagiert.
+
+````javascript
+const DMX = require('dmx');
+
+const Fixture = require('./lib/Fixture');
+const getUniverse = require('./lib/getUniverse');
+
+// erzeugt ein universe für das usbPro interface
+getUniverse('usbPro').then(universe => {
+  const fixture = new Fixture(1, universe);
+
+  fixture.brightness(1);
+  fixture.color('fuchsia');
+});
+````
+
+Alternativ kann auch der Debug Treiber verwendet werden:
+````javascript
+getUniverse('debug').then(universe => {
+  // ...
+});
+````
+
+## Fixture
+
+Die Fixture Klasse abstrahiert das Setzen von Farbwerten und der Helligkeit eines Lichtelementes.
+````javascript
+const fixture = new Fixture(basePort, universe);
+
+fixture.brightness(1);    // ein Wert zwischen 0 und 1
+fixture.color('fuchsia'); // ein benannter Farbwert oder Hexvalue (#f00)
+````

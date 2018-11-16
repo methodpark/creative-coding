@@ -2,7 +2,7 @@ const debug = require('debug');
 const lunchpad = require('lunchpad');
 const Color = lunchpad.Color;
 
-const generateBlankSquare = require('./lib/generateBlankSquare');
+const generateBlankSquare = require('../lib/generateBlankSquare');
 
 const DIR_UP = 'up'
 const DIR_DOWN = 'down'

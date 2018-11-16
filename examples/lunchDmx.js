@@ -4,8 +4,8 @@ const Color = require('color');
 
 const LunchColor = lunchpad.Color;
 
-const Fixture = require('./dmx/lib/Fixture');
-const getUniverse = require('./dmx/lib/getUniverse');
+const Fixture = require('../lib/Fixture');
+const getUniverse = require('../lib/getUniverse');
 
 
 Promise.all([

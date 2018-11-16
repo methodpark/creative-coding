@@ -1,8 +1,8 @@
 const lunchpad = require('lunchpad');
 const Color = lunchpad.Color;
 
-const ff = require('./lib/floodfillImplementation');
-const generateBlankSquare = require('./lib/generateBlankSquare');
+const ff = require('../lib/floodfillImplementation');
+const generateBlankSquare = require('../lib/generateBlankSquare');
 
 lunchpad.initialize().then(launchpad => floodfill(launchpad))
 

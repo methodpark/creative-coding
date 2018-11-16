@@ -1,9 +1,9 @@
 const DMX = require('dmx');
 
-const Fixture = require('./lib/Fixture');
-const getUniverse = require('./lib/getUniverse');
+const Fixture = require('../lib/Fixture');
+const getUniverse = require('../lib/getUniverse');
 
-getUniverse().then(universe => {
+getUniverse('debug').then(universe => {
   const fixture = new Fixture(1, universe);
 
   fixture.brightness(0);
