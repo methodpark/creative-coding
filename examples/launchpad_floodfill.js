@@ -21,9 +21,13 @@ function floodfill(launchpad) {
   function animationCycle() {
     setTimeout(animationCycle, 100)
 
-    if (cycles.length === 0) return
-
     let blank = generateBlankSquare(Color.BLACK)
+
+    if (cycles.length === 0) {
+        launchpad.updateBoard(blank)
+        return
+    }
+
     cycles.forEach(cycle => {
       let gen = cycle.shift()
 
