@@ -3,15 +3,14 @@
 const lunchpad = require('lunchpad');
 const Color = lunchpad.Color;
 
+lunchpad.initialize().then(lpad => initializeBoard(lpad));
+
 const MAX_COLS = 8;
 const MAX_ROWS = 8;
 const STEP_DELAY_MS = 500;
 
 let pad = null;
-
 let board;
-
-lunchpad.initialize().then(lpad => initializeBoard(lpad));
 
 const generateEmptyBoard = () => (
     board = Array.from({ length: MAX_ROWS },
@@ -73,8 +72,6 @@ const startGame = async () => {
         if (paused) { continue; }
         cycle++;
 
-        console.log(`Cycle: ${cycle}`);
-
         drawBoard(board);
 
         board = calculateNewBoard(board);
@@ -82,7 +79,6 @@ const startGame = async () => {
 }
 
 function drawBoard(board) {
-    console.log('board:', board);
     for (let x = 0; x < MAX_COLS; x++) {
         for (let y = 0; y < MAX_ROWS; y++) {
             const isAlive = board[x][y];
@@ -125,9 +121,6 @@ function countNeighbours(matrix, x, y) {
     let right = (x == size - 1) ? 0 : x + 1;
     let top = (y == size - 1) ? 0 : y + 1;
     let bottom = (y == 0) ? size - 1 : y - 1;
-
-    // console.log(x, y)
-    // console.log(left, right, top, bottom);
 
     if (matrix[left][y]) count++;
     if (matrix[left][top]) count++;
