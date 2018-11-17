@@ -98,12 +98,21 @@ class ConnectFour {
             return true;
         }
 
-        const diagonal =
+        const diagonalR =
             this.getConsecutiveColors([[x - 1, y - 1], [x - 2, y - 2], [x - 3, y - 3]], color) +
             this.getConsecutiveColors([[x + 1, y + 1], [x + 2, y + 2], [x + 3, y + 3]], color) +
             1;
 
-        if (diagonal >= 4) {
+        if (diagonalR >= 4) {
+            return true;
+        }
+
+        const diagonalL =
+            this.getConsecutiveColors([[x - 1, y + 1], [x - 2, y + 2], [x - 3, y + 3]], color) +
+            this.getConsecutiveColors([[x + 1, y - 1], [x + 2, y - 2], [x + 3, y - 3]], color) +
+            1;
+
+        if (diagonalL >= 4) {
             return true;
         }
 
