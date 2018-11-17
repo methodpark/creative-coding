@@ -11,8 +11,12 @@ const getUniverse = require('../lib/getUniverse');
 Promise.all([
   lunchpad.initialize(),
   getUniverse('usbPro')
-]).then(([launchpad, universe]) => initialize(launchpad, universe));
-
+])
+.then(([launchpad, universe]) => initialize(launchpad, universe))
+.catch(error => {
+  console.log(`could not initialize: "${error.message}`);
+  process.exit();
+});
 
 function initialize(launchpad, universe) {
   const fixture = new Fixture(1, universe);
