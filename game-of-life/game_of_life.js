@@ -29,19 +29,10 @@ function initializeBoard(lunchpad) {
 function enableDrawInput() {
   pad
     .on('input', manualToggleDraw)
-    .on('functionY', disableDrawInput);
+    .on('functionY', startGame);
 
     console.log('Draw some shit, yo!');
     console.log('End input and start game with [A-H] function keys.');
-}
-
-function disableDrawInput() {
-    pad.removeListener('input', manualToggleDraw);
-    pad.removeListener('functionY', disableDrawInput);
-    console.log('Drawing disabled.')
-
-    pad.on('functionY', startGame);
-    console.log('Start game with [A-H] function keys.')
 }
 
 const manualToggleDraw = (x, y) => {
@@ -50,23 +41,26 @@ const manualToggleDraw = (x, y) => {
         newColor = Color.BLACK;
     }
     pad.setSquare(x, y, newColor);
-    console.log('pling!');
 };
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const startGame = async () => {
+    pad.removeListener('input', manualToggleDraw);
     pad.removeListener('functionY', startGame);
 
-    console.log('Press again to pause/unpause.');
     let paused = false;
+
+    console.log('Press [A-H] again to pause/unpause.');
     pad.on('functionY', () => { paused = !paused; });
+
+    let cycle = 0;
 
     while (true) {
         await sleep(STEP_DELAY_MS);
-        if (paused) {
-            continue;
-        }
-        console.log('Game loop should go here...');
+        if (paused) { continue; }
+        cycle++;
+
+        console.log(`Game loop should go here... (cycle: ${cycle})`);
     }
 }
