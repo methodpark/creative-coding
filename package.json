@@ -5,6 +5,7 @@
   "main": "drawingNode.js",
   "directories": {},
   "scripts": {
+    "gol": "node examples/game_of_life",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
