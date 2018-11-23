@@ -1,6 +1,6 @@
 # SWEC18 Creative Coding Session
 
-## Beispiel Repoistory
+## Beispiel Repository
 
 Im folgenden Beispiel Repository finden sich zu jedem Gerät ausführliche Codebeispiele, die als Referenz (und natürlich zum herum spielen) heran gezogen werden können.
 https://github.com/methodpark/swec18-creative-coding
