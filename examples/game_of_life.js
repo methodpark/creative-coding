@@ -3,7 +3,9 @@
 const lunchpad = require('lunchpad');
 const Color = lunchpad.Color;
 
-lunchpad.initialize().then(lpad => initializeBoard(lpad));
+lunchpad.initialize()
+    .then(lpad => initializeBoard(lpad))
+    .catch(e => console.error("Error initializing l(a)unchpad:", e));
 
 const MAX_COLS = 8;
 const MAX_ROWS = 8;
