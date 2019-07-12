@@ -1,15 +1,15 @@
-# SWEC18 Creative Coding Session
+# Creative Coding Session
 
 ## Beispiel Repository
 
 Im folgenden Beispiel Repository finden sich zu jedem Gerät ausführliche Codebeispiele, die als Referenz (und natürlich zum herum spielen) heran gezogen werden können.
-https://github.com/methodpark/swec18-creative-coding
+https://github.com/methodpark/creative-coding
 
 Wenn ihr Lust habt könnt ihr mit eurem Projekt einen Pull Request stellen, dann haben wir im Anschluss eine kleine Sammlung spannender Beiträge die wir im Anschluss vorstellen können!
 
 ## Systemvoraussetzungen
 
-* node.js (z.B. version 10, download unter https://nodejs.org/en/download/)
+* node.js (z.B. version 10, download unter https://nodejs.org/en/download/), ab node v12 gibt es momentan scheinbar Probleme
 * eine Buildumgebung (z.B. MSVS, abhängig von eurem Betriebssystem)
 * Python 2.7
 
@@ -21,9 +21,9 @@ Dieses Cheatsheet bezieht sich allerdings nur auf Node.js / JavaScript.
 ## Installation
 
 ````bash
-git clone git@github.com:methodpark/swec18-creative-coding.git
+git clone git@github.com:methodpark/creative-coding.git
 
-cd swec18-creative-coding
+cd creative-coding
 
 npm install
 ````
