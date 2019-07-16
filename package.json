@@ -19,6 +19,6 @@
   "dependencies": {
     "color": "^3.1.0",
     "dmx": "github:wiedi/node-dmx",
-    "lunchpad": "^2.0.1"
+    "lunchpad": "^2.1.1"
   }
 }

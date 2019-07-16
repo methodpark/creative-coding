@@ -9,7 +9,8 @@ lunchpad.initialize()
 
 const MAX_COLS = 8;
 const MAX_ROWS = 8;
-const STEP_DELAY_MS = 500;
+const STEP_DELAY_MS = 100;
+const COLORS = [Color.RED, Color.GREEN, Color.AMBER];
 
 let pad = null;
 let board;
@@ -67,47 +68,50 @@ const startGame = async () => {
     console.log('Press [A-H] again to pause/unpause.');
     pad.on('functionY', () => { paused = !paused; });
 
-    let cycle = 0;
+    let cycle = 1;
 
     while (true) {
         await sleep(STEP_DELAY_MS);
-        if (paused) { continue; }
+        if (paused) { 
+            continue;
+        }
         cycle++;
 
         drawBoard(board);
 
-        board = calculateNewBoard(board);
+        board = calculateNewBoard(board, cycle);
     }
 }
 
 function drawBoard(board) {
     for (let x = 0; x < MAX_COLS; x++) {
         for (let y = 0; y < MAX_ROWS; y++) {
-            const isAlive = board[x][y];
-            if (isAlive) {
-                pad.setSquare(x, y, Color.RED);
-            } else {
-                pad.setSquare(x, y, Color.BLACK);
+            const generation = board[x][y];
+            let color = COLORS[generation % COLORS.length]
+            if (generation === 0) {
+                color = Color.BLACK
             }
+            
+            pad.setSquare(x, y, color);
         }
     }
 }
 
-function calculateNewBoard(board) {
+function calculateNewBoard(board, cycle) {
     const newBoard = [];
 
     for (let x = 0; x < board.length; x++) {
-        newBoard[x] = Array.from({length: MAX_COLS}, () => false);
+        newBoard[x] = Array.from({length: MAX_COLS}, () => 0);
         for (let y = 0; y < board[x].length; y++) {
             const count = countNeighbours(board, x, y);
-            const alive = board[x][y];
+            const isAlive = board[x][y] > 0
 
-            if (!alive) {
-                if (count === 3) newBoard[x][y] = true;
+            if (!isAlive) {
+                if (count === 3) newBoard[x][y] = cycle;
             } else {
-                if (count === 1 || count === 0) newBoard[x][y] = false;
-                if (count === 2 || count === 3) newBoard[x][y] = true;
-                if (count > 3) newBoard[x][y] = false;
+                if (count === 1 || count === 0) newBoard[x][y] = 0;
+                if (count === 2 || count === 3) newBoard[x][y] = board[x][y];
+                if (count > 3) newBoard[x][y] = 0;
             }
         }
     }
