@@ -2,23 +2,22 @@
   "name": "creative-coding",
   "version": "1.0.0",
   "description": "",
-  "main": "drawingNode.js",
   "directories": {},
   "scripts": {
-    "gol": "node examples/game_of_life",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gol": "node examples/launchpad_gameOfLife.js",
+    "drawing": "node examples/launchpad_drawing.js",
+    "connect-four": "node examples/launchpad_connectFour.js",
+    "snake": "node examples/launchpad_snake.js"
   },
   "keywords": [
     "creative codeing",
     "launchpad",
-    "midi",
-    "dmx"
+    "midi"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "color": "^3.1.0",
-    "dmx": "github:wiedi/node-dmx",
     "lunchpad": "^2.1.1"
   }
 }
