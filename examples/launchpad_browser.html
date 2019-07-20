@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <title>Launchpad Mini</title>
@@ -5,12 +6,62 @@
         <script src="https://unpkg.com/lunchpad"></script>
 
         <script>
-            lunchpad.initialize().then(lp => {
-                lp.setSquare(0, 0, lunchpad.Color.RED);
+            const { initialize, Color } = lunchpad;
+            const drawing = lunchpad.examples.drawing;
+
+            initialize().then(launchpad => {
+                drawing(launchpad);
             });
         </script>
+
+        <style>
+            pre {
+                padding: 15px;
+                background-color: #eee;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin: 10px;
+                font-size: 15px;
+            }
+        </style>
     </head>
     <body>
         <h1>happy launchpadding!</h1>
+        <h2>Setting Buttons</h2>
+<pre><code>// set color by coordinate on buttons
+launchpad.setSquare(0, 0, Color.AMBER)
+
+// set color on the x function keys
+launchpad.setFunctionX(0, Color.AMBER)
+
+// set color on the y function keys
+launchpad.setFunctionY(0, Color.AMBER)
+
+// clear everything
+launchpad.clearAll()</code></pre>
+
+<h2>receiving events</h2>
+<pre><code>// register event handler on button
+launchpad.on('input', (x, y) => {
+    console.log(x, y)
+})
+
+// register event handler on function button X
+launchpad.on('inputX', x => {
+    console.log(x)
+})
+
+// register event handler on function button Y
+launchpad.on('inputY', y => {
+    console.log(y)
+})</code></pre>
+
+<h2>Colors</h2>
+<pre><code>const { Color } = require('lunchpad')
+
+launchpad.setSquare(0, 0, Color.BLACK)  // unset
+launchpad.setSquare(0, 0, Color.AMBER)  // amber
+launchpad.setSquare(0, 0, Color.RED)    // red
+launchpad.setSquare(0, 0, Color.GREEN)  // green</code></pre>
     </body>
 </html>
