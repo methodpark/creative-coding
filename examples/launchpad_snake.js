@@ -13,6 +13,8 @@ const STATE_START = 'start'
 const STATE_RUNNING = 'running'
 const STATE_ERROR = 'error'
 
+const GRID_SIZE = 8
+
 lunchpad.initialize().then(launchpad => snake(launchpad))
 
 function snake(launchpad) {
@@ -37,27 +39,30 @@ function snake(launchpad) {
     setTimeout(() => launchpad.updateBoard(generateBlankSquare(Color.BLACK)), 1200)
   }
 
+  function normalize(value){
+    if (value < 0) {
+      return GRID_SIZE - 1;
+    } else if (value >= GRID_SIZE) {
+      return 0;
+    }
+    return value;
+  }
+
   function tick() {
     let nextSquare = null
     switch (currentDirection) {
       case DIR_UP:
-        nextSquare = { x: snake[0].x, y: snake[0].y + 1 }
+        nextSquare = { x: snake[0].x, y: normalize(snake[0].y + 1) }
         break
       case DIR_DOWN:
-        nextSquare = { x: snake[0].x, y: snake[0].y - 1 }
+        nextSquare = { x: snake[0].x, y: normalize(snake[0].y - 1) }
         break
       case DIR_LEFT:
-        nextSquare = { x: snake[0].x - 1, y: snake[0].y }
+        nextSquare = { x: normalize(snake[0].x - 1), y: snake[0].y }
         break
       case DIR_RIGHT:
-        nextSquare = { x: snake[0].x + 1, y: snake[0].y }
+        nextSquare = { x: normalize(snake[0].x + 1), y: snake[0].y }
         break
-    }
-
-    //check for wall collision
-    if (nextSquare.x < 0 || nextSquare.x > 7 || nextSquare.y < 0 || nextSquare.y > 7) {
-      handleError()
-      return
     }
 
     //check for snek collision
@@ -143,7 +148,7 @@ function snake(launchpad) {
 }
 
 function _getRandomCoord() {
-  return { x: parseInt(Math.random() * 8), y: parseInt(Math.random() * 8) }
+  return { x: parseInt(Math.random() * GRID_SIZE), y: parseInt(Math.random() * GRID_SIZE) }
 }
 
 function _checkSnakeForCollision(snake, coord) {
